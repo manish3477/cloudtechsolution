@@ -30,8 +30,8 @@
     <h4>Qno.1 To divide given array into 10-percentiles.</h4>
     <p>Enter size of array:</p> <input id="arraysize" type="number" placeholder="array size">
     <button onclick="myfunction()">send </button>
-    <p>Entered array:<p id="arrayresult"></p></p>
-    <p>After percentile:<p id="percentileresult"></p></p>
+    <p id="arrayresult"></p>
+    <p id="percentileresult"></p>
   </div>
 
   <div class="container">
@@ -78,7 +78,7 @@
             }
 
         }
-    document.getElementById("result").innerHTML = "Result: " + "[" +natural + "]";
+    document.getElementById("result").innerHTML = "Result: " + "[" + natural + "]";
             
 }
 
@@ -94,7 +94,7 @@
             {
                  myinputarr[a] = prompt('Enter array Element ' + (a+1));
             }
-            document.getElementById("arrayresult").innerHTML = myinputarr;
+            document.getElementById("arrayresult").innerHTML = "Entered array: " + "[" + myinputarr +"]";
 
             //array
             var arr = myinputarr;
@@ -147,7 +147,7 @@
 
             //console.log(resultarr);
 
-            document.getElementById("percentileresult").innerHTML = resultarr;
+            document.getElementById("percentileresult").innerHTML = "Entered array: " + "[" + resultarr +"]";
 
   
 
