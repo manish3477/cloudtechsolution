@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Questionnaire Solution </title>
+    <style>
+        .container{
+            padding: 30px;
+        }
+        input{
+            height: 30px;
+            width: 100px;
+        }
+        button{
+            height: 35px;
+            background-color: rgb(127, 127, 235);
+            color: white;
+            border: rgb(127, 127, 235);
+            border-radius: 5px;
+        }
+        p{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h4>Qno.1 To divide given array into 10-percentiles.</h4>
+    <p>Enter size of array:</p> <input id="arraysize" type="number" placeholder="array size">
+    <button onclick="myfunction()">send </button>
+    <p>Entered array:<p id="arrayresult"></p></p>
+    <p>After percentile:<p id="percentileresult"></p></p>
+  </div>
+
+  <div class="container">
+    <h4>Qno.2 To replace numbers that also show up in the Fibonacci series with -1</h4>
+    <p>Enter natural number size: <span><input id="natural"></span></p>
+    <p>Enter fibonanci series size: <span><input id="fibo"></span></p>
+    <button onclick="secondfunction()">Send</button>
+    <p id="naturalresult"></p>
+    <p id="fiboresult"></p>
+    <p id="result"></p>
+
+</div>
+
+   <!-- javascript part--> 
+    <script>
+        //question no2 function
+        function secondfunction(){
+            var naturalsize = document.getElementById("natural").value;
+            var fibosize = document.getElementById("fibo").value;
+
+            //generate natural numbers
+            var natural = [];
+            for(i=0;i<=naturalsize-1;i++){
+                natural[i]=i+1;
+            } 
+            document.getElementById("naturalresult").innerHTML = "Natural Numbers: " + "[" +natural +"]";
+            
+     //generate fibonacci series       
+    let fibonacci = [0,1];
+    function listFibonacci(num) {
+        for (let i = 1; i < num; i++) {
+            fibonacci.push(fibonacci[i] + fibonacci[i - 1]);
+        }
+        document.getElementById("fiboresult").innerHTML = "Fibonacci: " + "[" +fibonacci +"]";
+    }
+    listFibonacci(fibosize);
+    
+    //function to replace by -1
+    for(i=0;i<=natural.length-1;i++){
+            for(j=0;j<=fibonacci.length-1;j++){
+                if(natural[i] == fibonacci[j]){
+                    natural[i] = -1;
+                }
+            }
+
+        }
+    document.getElementById("result").innerHTML = "Result: " + "[" +natural + "]";
+            
+}
+
+
+    //Qno1 function
+        function myfunction(){
+            //size of an array
+            var myinputarr = [];
+            var arraysize = document.getElementById("arraysize").value; 
+
+            //create array
+            for(var a=0; a<arraysize; a++)
+            {
+                 myinputarr[a] = prompt('Enter array Element ' + (a+1));
+            }
+            document.getElementById("arrayresult").innerHTML = myinputarr;
+
+            //array
+            var arr = myinputarr;
+
+            //sorting array in acending order
+            arr.sort(function(a, b){return a-b});
+            const size = arr.length;
+
+            //getting highest and lowest array elements
+            let lowest = arr[0];
+            let highest = arr[size - 1 ];
+
+            console.log("highest:" + highest);
+            console.log("lowest:" + lowest);
+
+
+
+
+            //function for value comprasion in given range.
+            function inRange(x){
+                return this[0] <= x && x <= this[1]
+            }
+
+            //applying filter function in each range to get elements of that range.
+            // result10 represent range 0-10% and so on
+
+            var result10 = arr.filter(inRange, [lowest,0.1*highest]).length
+            var result20 = arr.filter(inRange, [0.1*highest+1, 0.2*highest]).length
+            var result30 = arr.filter(inRange, [0.2*highest+1, 0.3*highest]).length
+            var result40 = arr.filter(inRange, [0.3*highest+1, 0.4*highest]).length
+            var result50 = arr.filter(inRange, [0.4*highest+1, 0.5*highest]).length
+            var result60 = arr.filter(inRange, [0.5*highest+1, 0.6*highest]).length
+            var result70 = arr.filter(inRange, [0.6*highest+1, 0.7*highest]).length
+            var result80 = arr.filter(inRange, [0.7*highest+1, 0.8*highest]).length
+            var result90 = arr.filter(inRange, [0.8*highest+1, 0.9*highest]).length
+            var result100 = arr.filter(inRange, [0.9*highest+1, highest]).length
+
+            //result array
+            var resultarr = [result10,
+            result20,
+            result30,
+            result40,
+            result50,
+            result60,
+            result70,
+            result80,
+            result90,
+            result100
+            ]
+
+            //console.log(resultarr);
+
+            document.getElementById("percentileresult").innerHTML = resultarr;
+
+  
+
+
+
+        }
+    </script>
+    
+</body>
+</html>
